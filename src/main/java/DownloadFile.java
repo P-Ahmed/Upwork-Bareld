@@ -14,16 +14,11 @@ public class DownloadFile {
         System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriver.exe");
         Map<String, Object> prefs = new HashMap<String, Object>();
         prefs.put("download.default_directory", "C:/Utility/Downloads/");
-        prefs.put("download.prompt_for_download", false);
-        prefs.put("download.extensions_to_open", "application/xml");
-        prefs.put("safebrowsing.enabled", true);
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
         options.addArguments("start-maximized");
         options.addArguments("--ignore-ssl-errors=yes");
         options.addArguments("--ignore-certificate-errors");
-        options.addArguments("--safebrowsing-disable-download-protection");
-        options.addArguments("safebrowsing-disable-extension-blacklist");
         driver =  new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
