@@ -4,12 +4,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DownloadFile {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, AWTException {
         WebDriver driver;
         System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriver.exe");
         Map<String, Object> prefs = new HashMap<String, Object>();
@@ -37,9 +39,15 @@ public class DownloadFile {
         driver.switchTo().defaultContent();
         driver.switchTo().frame("main");
         driver.switchTo().frame("cfgMain");
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         driver.findElement(By.xpath("/html/body/table/tbody/tr[2]/td/form/table[2]/tbody/tr/td/form[1]/table/tbody/tr[5]/td/input")).click();
-        Thread.sleep(10000);
+        Thread.sleep(2000);
+
+        //Press the keyboard key "Enter"
+        Robot keyPress = new Robot();
+        keyPress.keyPress(KeyEvent.VK_ENTER);
+
+        Thread.sleep(5000);
 
         driver.quit();
     }
